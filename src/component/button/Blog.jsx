@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 
 export default function Information(){
     return(
