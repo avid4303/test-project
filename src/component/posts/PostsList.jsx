@@ -1,4 +1,4 @@
-import { Fragment, Suspense, createElement } from 'react'
+import { Fragment } from 'react'
 
 import {posts} from "../../data/posts.js";
 

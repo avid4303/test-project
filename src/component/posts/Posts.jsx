@@ -1,5 +1,3 @@
-import { Fragment, Suspense, createElement } from 'react'
-
 import PostsList from './PostsList';
 
 export default function Posts(){

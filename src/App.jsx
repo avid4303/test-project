@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 import Header from "./component/header/Header";
 import Posts from "./component/posts/Posts";
 
