@@ -1,11 +1,12 @@
-import Header from "./component/header/Header";
-import Posts from "./component/posts/Posts";
+import Header from "./components/header/Header";
+import Posts from "./components/posts/Posts";
+import AppRouter from "./router/AppRouter";
 
 export default function App(){
     return(
         <div className="">
             <Header />
-            <Posts />
+            <AppRouter />
         </div>
     )
 }    
