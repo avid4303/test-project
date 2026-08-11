@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Posts from '../components/posts/Posts';
 import PostsList from '../components/posts/PostsList';
@@ -10,7 +10,7 @@ export default function AppRouter(){
       <Route path="/" element={<Posts />}>
         <Route index element={<PostsList />}/>
       </Route>
-      <Route path="/PostDetailPage/query" element={<PostDetailPage />} />
+      <Route path="/PostDetailPage/:id" element={<PostDetailPage />} />
     </Routes>
-  )
+  );
 }
