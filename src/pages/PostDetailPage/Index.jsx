@@ -10,34 +10,30 @@ export default function Index(){
 
   const { id } = useParams();
 
-  const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //API
+  //記事IDが変更されたら記事詳細を再取得
   useEffect(() => {
     const getPostDetail = async() => {
-
       setLoading(true);
       setError(null);
 
       try{
+        // 記事IDを指定して記事詳細を取得
         const data = await getPostDetailApi(id);
-
-        console.log("取得データ:", data);
-        console.log("categories:", data.categories);
-        
         setPosts(data);
-
       }catch(error){
+        // API通信エラーをstateに保存
         setError(error);
-
       }finally{
+        // API通信終了後にローディングを解除
         setLoading(false);
       }
     };
 
-    getPostDetail(id);
+    getPostDetail();
   },[id]);
 
 
