@@ -1,11 +1,58 @@
-import { Fragment } from 'react'
 import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react'
 
-import {posts} from "../../data/posts.js";
+import { getPostsApi } from "../../api/PostsApi.jsx";
 
 import PostDetailPage from "../../pages/PostDetailPage";
+import ErrorMessage from "./ErrorMessage.jsx";
+import LoadingMessage from './LoadingMessage.jsx';
 
 export default function PostsList(){
+
+  const [posts, setPosts] = useState([]);//API管理
+  const [loading, setLoading] = useState(true);//通信管理
+  const [error, setError ] = useState(null);//エラー管理
+
+  //API
+  useEffect(() => {
+    const getPosts = async () => {
+      //読み込み
+      setLoading(true);
+      setError(null);
+
+      try{
+        //記事一覧APIの呼び出し
+        const data = await getPostsApi();
+        //コンポーネントの更新
+        setPosts(data.posts);
+
+      //エラー処理
+      }catch(err){
+        setError("記事の取得に失敗しました");
+      }finally{
+        setLoading(false);
+      }
+    }
+
+    getPosts();
+  },[]);
+
+
+  /* 
+  レンダリング
+  */
+
+  //記事一覧取得中の画面
+  if(loading){
+    return <LoadingMessage />
+  }
+
+  //記事一覧取得失敗時の画面
+  if(error){
+    return <ErrorMesage />
+  }
+
+  //API取得後の画面表示
   return(
 
     /* 
