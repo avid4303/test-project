@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom"
+
 export default function Blog(){
   return(
-    <a className="text-white no-underline font-semibold" href="/">Blog</a>
+    <div className="text-white no-underline font-semibold">
+      <Link to="/">Blog</Link>
+    </div>
   )
 }
 
