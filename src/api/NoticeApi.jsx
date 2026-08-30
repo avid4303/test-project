@@ -1,7 +1,7 @@
-import { API_BASE_URL } from "../constants";
+import { BASE_URL } from "../constants";
 
 export const setNoticeApi = async (formData) => {
-  const res = await fetch(API_BASE_URL,{
+  const res = await fetch(`${BASE_URL}/contacts`,{
     method:"POST",
     headers: {
       "Content-Type": "application/json",
