@@ -1,7 +1,7 @@
-import { Link,Outlet,useParams } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
 
-import { getPostDetailApi } from "../../api/PostsDetailApi";
+import { getPostDetailApi } from "../../api/PostDetailApi";
 
 import ErrorMessage from "../../components/posts/ErrorMessage";
 import LoadingMessage from '../../components/posts/LoadingMessage';
@@ -23,7 +23,7 @@ export default function Index(){
       try{
         // 記事IDを指定して記事詳細を取得
         const data = await getPostDetailApi(id);
-        setPosts(data);
+        setPost(data.post);
       }catch(error){
         // API通信エラーをstateに保存
         setError(error);
@@ -63,12 +63,12 @@ export default function Index(){
     
     <div className={`max-w-[800px] mx-auto pt-6 px-4 pb-12 flex flex-col gap-4 key=${id}`}>
       {/* ➀ */}
-      <img src={posts.post.thumbnailUrl} className="w-full object-cover" />
+      <img src={post.thumbnailUrl} className="w-full object-cover" />
 
       <div className="flex flex-wrap items-center gap-2">
         {/* ➁ */}
-        <time className="text-[0.95rem] text-gray-600" dateTime={posts.post.createdAt}>
-          {new Date(posts.post.createdAt).toLocaleDateString("ja-JP", {
+        <time className="text-[0.95rem] text-gray-600" dateTime={post.createdAt}>
+          {new Date(post.createdAt).toLocaleDateString("ja-JP", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -76,7 +76,7 @@ export default function Index(){
         </time>
         {/* ➂ */}
         <div className="flex flex-wrap gap-[6px]">
-          {posts.post.categories.map(categori => (
+          {post.categories.map(categori => (
             <span className="py-1 px-2 rounded-full bg-gray-200 text-gray-700 text-[.8rem]" key={categori}>
               {categori}
             </span>
@@ -85,11 +85,11 @@ export default function Index(){
       </div>
 
       {/* ➃ */}
-      <h1 className="m-0 text-[1.8rem] font-extrabold text-gray-900">{posts.post.title}</h1>
+      <h1 className="m-0 text-[1.8rem] font-extrabold text-gray-900">{post.title}</h1>
 
       {/* ➄ */}
       <div className="whitespace-pre-wrap"
-      dangerouslySetInnerHTML={{ __html: posts.post.content.trim(), }}/>
+      dangerouslySetInnerHTML={{ __html: post.content.trim(), }}/>
 
       {/* ➅ */}
       <div className="mt-4">

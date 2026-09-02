@@ -3,8 +3,7 @@ import AppRouter from "./router/AppRouter";
 
 export default function App(){
   return(
-    <div className="">
-      <Header />
+    <div>
       <AppRouter />
     </div>
   )
